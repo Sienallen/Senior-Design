@@ -1,0 +1,10 @@
+#File: .gitignore
+#Author: Ian Poremba (iporemba@uci.edu)
+#Author: Devin Reyes (devinnr@uci.edu)
+#Author: Allen Sien (siena@uci.edu)
+#Description: Contains the files ignored by github
+#Date: 09/10/2022
+#Updated: 09/10/2022
+
+__pycache__
+UserPass.txt

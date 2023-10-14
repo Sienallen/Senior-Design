@@ -1,0 +1,2344 @@
+#:kivy 2.1
+# File: my.kv
+# Author: Ian Poremba (iporemba@uci.edu)
+# Author: Devin Reyes (devinnr@uci.edu)
+# Author: Allen Sien (siena@uci.edu)
+# Description: Contains the implementation of the kivy file
+# Start date: 08/30/2022
+# Updated: 03/11/2023
+
+
+
+# ---------------------------------------------------------------------------------------------------------------
+
+
+
+<LoginScreen>:
+    login: login
+    username: username
+    password: password
+    loginLayout: loginLayout
+    title: title
+    usernameLabel: usernameLabel
+    passwordLabel: passwordLabel
+    loginButton: loginButton
+    signUpButton: signUpButton
+    exitButton: exitButton
+    
+# ---------------------------------------------------------------------------------------------------------------
+
+    FloatLayout:
+        RelativeLayout:
+            id: loginLayout
+            size_hint: (min(root.width, root.height) / root.width, min(root.width, root.height) / root.height)
+            pos_hint: {"x": 0.5 - min(root.width, root.height) / root.width / 2, "y": 0.5 - min(root.width, root.height) / root.height / 2}
+            
+            Label:
+                id: title
+                text: "Wizard Chess"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.85}
+                font_size: 50
+            Label:
+                id: login
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.75}
+                font_size: 36
+            Label:
+                id: usernameLabel
+                text: "Please Enter A Username"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.65}
+                font_size: 24
+            Label:
+                id: passwordLabel
+                text: "Please Enter A Password"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.45}
+                font_size: 24
+            TextInput:
+                id: username
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (1, 1, 1, 1)
+                size_hint: (0.4, 0.1)
+                pos_hint: {"x": 0.3, "y": 0.55}
+                font_size: 16
+                hint_text: "Username"
+                hint_text_color: (0.5, 0.5, 0.5, 1.0)
+                multiline: False
+                cursor_blink: True
+                cursor_color: (0, 0, 0, 1)
+            TextInput:
+                id: password
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (1, 1, 1, 1)
+                size_hint: (0.4, 0.1)
+                pos_hint: {"x": 0.3, "y": 0.35}
+                font_size: 16
+                hint_text: "Password"
+                hint_text_color: (0.5, 0.5, 0.5, 1.0)
+                multiline: False
+                cursor_blink: True
+                cursor_color: (0, 0, 0, 1)
+            Button:
+                id: loginButton
+                text: "Log in"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.27, "y": 0.2}
+                font_size: 12
+                on_press:
+                    root.LogIn()
+            Button:
+                id: signUpButton
+                text: "Sign Up"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.53, "y": 0.2}
+                font_size: 12
+                on_press:
+                    root.SignUp()
+            Button:
+                id: exitButton
+                text: "Exit"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.05}
+                font_size: 12
+                on_press:
+                    root.LogClosingClient()
+                    app.get_running_app().stop()
+
+
+
+# ---------------------------------------------------------------------------------------------------------------
+
+
+
+<HomeScreen>:
+    homeLayout: homeLayout
+    title: title
+    authors: authors
+    gameButton: gameButton
+    settingsButton: settingsButton
+    exitButton: exitButton
+    
+# ---------------------------------------------------------------------------------------------------------------
+
+    FloatLayout:
+        RelativeLayout:
+            id: homeLayout
+            size_hint: (min(root.width, root.height) / root.width, min(root.width, root.height) / root.height)
+            pos_hint: {"x": 0.5 - min(root.width, root.height) / root.width / 2, "y": 0.5 - min(root.width, root.height) / root.height / 2}
+
+            Label:
+                id: title
+                text: "Wizard Chess"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.85}
+                font_size: 50
+            Label:
+                id: authors
+                text: "A project by Ian, Allen and Devin"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.7}
+                font_size: 24
+            Button:
+                id: gameButton
+                text: "Play Game"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.4, "y": 0.5}
+                font_size: 12
+                on_press:
+                    root.manager.current = "GameModesScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: settingsButton
+                text: "Settings"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.4, "y": 0.35}
+                font_size: 12
+                on_press:
+                    root.manager.current = "SettingsScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: exitButton
+                text: "Exit"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.05}
+                font_size: 12
+                on_press:
+                    root.ClosingClient()
+                    app.get_running_app().stop()
+
+
+
+# ---------------------------------------------------------------------------------------------------------------
+
+
+
+<SettingsScreen>:
+    set: set
+    settingsLayout: settingsLayout
+    settingsTitle: settingsTitle
+    backButton: backButton
+    deleteButton: deleteButton
+    
+# ---------------------------------------------------------------------------------------------------------------
+
+    FloatLayout:
+        RelativeLayout:
+            id: settingsLayout
+            size_hint: (min(root.width, root.height) / root.width, min(root.width, root.height) / root.height)
+            pos_hint: {"x": 0.5 - min(root.width, root.height) / root.width / 2, "y": 0.5 - min(root.width, root.height) / root.height / 2}
+            
+            Label:
+                id: settingsTitle
+                text: "Settings"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.85}
+                font_size: 36
+            Label:
+                id: set
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.7}
+                font_size: 36
+            Button:
+                id: backButton
+                text: "Go Back"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.05}
+                font_size: 12
+                on_press:
+                    root.manager.current = "HomeScreen"
+                    root.manager.transition.direction = "right"
+            Button:
+                id: deleteButton
+                text: "Delete Account"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": .4, "y": 0.6}
+                font_size: 12
+                on_press:
+                    root.DelAcc()
+
+
+
+# ---------------------------------------------------------------------------------------------------------------
+
+
+
+<GameModesScreen>:
+    appVsApp: appVsApp
+    boardVsAppAsApp: boardVsAppAsApp
+    boardVsAppAsBoard: boardVsAppAsBoard
+    appVsAi: appVsAi
+    boardVsAi: boardVsAi
+    gamemodeLayout: gamemodeLayout
+    gameModeTitle: gameModeTitle
+    backButton: backButton
+
+# ---------------------------------------------------------------------------------------------------------------
+
+    FloatLayout:
+        RelativeLayout:
+            id: gamemodeLayout
+            size_hint: (min(root.width, root.height) / root.width, min(root.width, root.height) / root.height)
+            pos_hint: {"x": 0.5 - min(root.width, root.height) / root.width / 2, "y": 0.5 - min(root.width, root.height) / root.height / 2}
+            
+            Label:
+                id: gameModeTitle
+                text: "Game Mode Selection"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.85}
+                font_size: 36
+            Button:
+                id: appVsApp
+                text: "App vs. App"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.4, "y": 0.55}
+                font_size: 12
+                on_release: 
+                    root.GamemodeSelection(self)
+                    root.manager.current = "ColorScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: boardVsAppAsApp
+                text: "Board vs. App (App)"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.27, "y": 0.4}
+                font_size: 12
+                on_release: 
+                    root.GamemodeSelection(self)
+                    root.manager.current = "ColorScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: boardVsAppAsBoard
+                text: "Board vs. App (Board)"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.53, "y": 0.4}
+                font_size: 12
+                on_release: 
+                    root.GamemodeSelection(self)
+                    root.manager.current = "ColorScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: appVsAi
+                text: "App vs. AI"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.27, "y": 0.25}
+                font_size: 12
+                on_release:
+                    root.GamemodeSelection(self)
+                    root.manager.current = "ColorScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: boardVsAi
+                text: "Board vs. AI"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.53, "y": 0.25}
+                font_size: 12
+                on_release:
+                    root.GamemodeSelection(self)
+                    root.manager.current = "ColorScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: backButton
+                text: "Go Back"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.05}
+                font_size: 12
+                on_press:
+                    root.manager.current = "HomeScreen"
+                    root.manager.transition.direction = "right"
+            
+
+
+# ---------------------------------------------------------------------------------------------------------------
+
+                
+        
+<ColorScreen>:
+    blackBtn: blackBtn
+    whiteBtn: whiteBtn
+    colorLayout: colorLayout
+    colorTitle: colorTitle
+    backButton: backButton
+
+# ---------------------------------------------------------------------------------------------------------------
+
+    FloatLayout:
+        RelativeLayout:
+            id: colorLayout
+            size_hint: (min(root.width, root.height) / root.width, min(root.width, root.height) / root.height)
+            pos_hint: {"x": 0.5 - min(root.width, root.height) / root.width / 2, "y": 0.5 - min(root.width, root.height) / root.height / 2}
+            
+            Label:
+                id: colorTitle
+                text: "Color Selection"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.85}
+                font_size: 36
+            Button:
+                id: whiteBtn
+                text: "White"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.4, "y": 0.45}
+                font_size: 12
+                on_press:
+                    root.ColorSelection(self)
+                    root.manager.current = "GameScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: blackBtn
+                text: "Black"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.4, "y": 0.3}
+                font_size: 12
+                on_press:
+                    root.ColorSelection(self)
+                    root.manager.current = "GameScreen"
+                    root.manager.transition.direction = "left"
+            Button:
+                id: backButton
+                text: "Go Back"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.05}
+                font_size: 12
+                on_press:
+                    root.manager.current = "GameModesScreen"
+                    root.manager.transition.direction = "right"
+
+# ---------------------------------------------------------------------------------------------------------------
+
+          
+
+<GameOverScreen>:
+    scrollView2: scrollView2
+    gameoverLayout: gameoverLayout
+    gameOverLabel: gameOverLabel
+    exitButton: exitButton
+    
+# ---------------------------------------------------------------------------------------------------------------
+
+    FloatLayout:
+        RelativeLayout:
+            id: gameoverLayout
+            size_hint: (min(root.width, root.height) / root.width, min(root.width, root.height) / root.height)
+            pos_hint: {"x": 0.5 - min(root.width, root.height) / root.width / 2, "y": 0.5 - min(root.width, root.height) / root.height / 2}
+            
+            Label:
+                id: gameOverLabel
+                text: "Game Over"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.85}
+                font_size: 36
+            Button:
+                id: exitButton
+                text: "Exit"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.05}
+                font_size: 12
+                on_release:
+                    root.manager.current = "HomeScreen"
+                    root.manager.transition.direction = "right"
+            ScrollView:
+                endGameChat: endGameChat
+                id: scrollView2
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.3, 0.6)
+                pos_hint: {"x": 0.35, "y": 0.2}
+                font_size: 12
+                do_scroll_y: True
+                canvas:
+                    Color:
+                        rgba: (0, 0, 0, 0.3)
+                    Rectangle:
+                        pos: root.pos
+                        size: root.size 
+                Label:
+                    id: endGameChat
+                    text: ""
+                    font_size: 16
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+
+
+
+# ---------------------------------------------------------------------------------------------------------------
+
+          
+
+<GameScreen>:
+    promotionSelection: promotionSelection
+    promQueen: promQueen
+    promRook: promRook
+    promBishop: promBishop
+    promKnight: promKnight
+    chatInput: chatInput
+    scrollView: scrollView
+    chessboardText: chessboardText
+    forfeitButton: forfeitButton
+    onlineChat: onlineChat
+
+    btn00: btn00
+    btn01: btn01
+    btn02: btn02
+    btn03: btn03
+    btn04: btn04
+    btn05: btn05
+    btn06: btn06
+    btn07: btn07
+    btn08: btn08
+    btn09: btn09
+    btn10: btn10
+    btn11: btn11
+    btn12: btn12
+    btn13: btn13
+    btn14: btn14
+    btn15: btn15
+    btn16: btn16
+    btn17: btn17
+    btn18: btn18
+    btn19: btn19
+    btn20: btn20
+    btn21: btn21
+    btn22: btn22
+    btn23: btn23
+    btn24: btn24
+    btn25: btn25
+    btn26: btn26
+    btn27: btn27
+    btn28: btn28
+    btn29: btn29
+    btn30: btn30
+    btn31: btn31
+    btn32: btn32
+    btn33: btn33
+    btn34: btn34
+    btn35: btn35
+    btn36: btn36
+    btn37: btn37
+    btn38: btn38
+    btn39: btn39
+    btn40: btn40
+    btn41: btn41
+    btn42: btn42
+    btn43: btn43
+    btn44: btn44
+    btn45: btn45
+    btn46: btn46
+    btn47: btn47
+    btn48: btn48
+    btn49: btn49
+    btn50: btn50
+    btn51: btn51
+    btn52: btn52
+    btn53: btn53
+    btn54: btn54
+    btn55: btn55
+    btn56: btn56
+    btn57: btn57
+    btn58: btn58
+    btn59: btn59
+    btn60: btn60
+    btn61: btn61
+    btn62: btn62
+    btn63: btn63
+
+    ra: ra
+    rb: rb
+    rc: rc
+    rd: rd
+    re: re
+    rf: rf
+    rg: rg
+    rh: rh
+    c1: c1
+    c2: c2
+    c3: c3
+    c4: c4
+    c5: c5
+    c6: c6
+    c7: c7
+    c8: c8
+    gameLayout: gameLayout
+    
+# ---------------------------------------------------------------------------------------------------------------
+
+    FloatLayout:
+        RelativeLayout:
+            id: gameLayout
+            size_hint: (min(root.width, root.height) / root.width, min(root.width, root.height) / root.height)
+            pos_hint: {"x": 0.5 - min(root.width, root.height) / root.width / 2, "y": 0.5 - min(root.width, root.height) / root.height / 2}
+            
+            Label:
+                id: chessboardText
+                text: "Waiting for opponent"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.56, 0.1)
+                pos_hint: {"x": 0.1, "y": 0.85}
+                font_size: 18
+            Label:
+                id: onlineChat
+                text: "Online Chat"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.7, "y": 0.85}
+                font_size: 18
+            TextInput:
+                id: chatInput
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (1, 1, 1, 1)
+                size_hint: (0.2, 0.1)
+                pos_hint: {"x": 0.7, "y": 0.2}
+                font_size: 16
+                hint_text: "Enter Message"
+                hint_text_color: (0.5, 0.5, 0.5, 1.0)
+                multiline: False
+                cursor_blink: True
+                cursor_color: (0, 0, 0, 1)
+                on_text_validate:
+                    root.ChatSend()
+                    self.text = ""
+            Button:
+                id: forfeitButton
+                text: "Forfeit"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.1, 0.1)
+                pos_hint: {"x": 0.45, "y": 0.05}
+                font_size: 12
+                on_release:
+                    root.SwitchToNext()
+            ScrollView:
+                inGameChat: inGameChat
+                id: scrollView
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.2, 0.51)
+                pos_hint: {"x": 0.7, "y": 0.3}
+                font_size: 12
+                do_scroll_y: True
+                canvas:
+                    Color:
+                        rgba: (0, 0, 0, 0.3)
+                    Rectangle:
+                        pos: root.pos
+                        size: root.size 
+                Label:
+                    id: inGameChat
+                    text: ""
+                    font_size: 16
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+            RelativeLayout:
+                id: promotionSelection
+                size_hint: (0.28, 0.07)
+                pos_hint: {"x": 2, "y": 2}
+                Button:
+                    id: promRook
+                    txt: "promRook"
+                    color: (1, 1, 1, 1)
+                    background_color: (.55, .55, .55, 1)
+                    size_hint: (0.25, 1)
+                    pos_hint: {"x": 0.5, "y": 0}
+                    font_size: 12
+                    on_press:
+                        state: "normal"
+                    on_release:
+                        state: "down"
+                        root.DeletePromotion(self)
+                    Image:
+                        id: promRookImg
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        source: "icons/white-rook.png"
+                Button:
+                    id: promKnight
+                    txt: "promKnight"
+                    color: (1, 1, 1, 1)
+                    background_color: (.7, .7, .7, 1)
+                    size_hint: (0.25, 1)
+                    pos_hint: {"x": 0.25, "y": 0}
+                    font_size: 12
+                    on_press:
+                        state: "normal"
+                    on_release:
+                        state: "down"
+                        root.DeletePromotion(self)
+                    Image:
+                        id: promKnightImg
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        source: "icons/white-knight.png"
+                Button:
+                    id: promBishop
+                    txt: "promBishop"
+                    color: (1, 1, 1, 1)
+                    background_color: (.7, .7, .7, 1)
+                    size_hint: (0.25, 1)
+                    pos_hint: {"x": 0.75, "y": 0}
+                    font_size: 12
+                    on_press:
+                        state: "normal"
+                    on_release:
+                        state: "down"
+                        root.DeletePromotion(self)
+                    Image:
+                        id: promBishopImg
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        source: "icons/white-bishop.png"
+                Button:
+                    id: promQueen
+                    txt: "promQueen"
+                    color: (1, 1, 1, 1)
+                    background_color: (.55, .55, .55, 1)
+                    size_hint: (0.25, 1)
+                    pos_hint: {"x": 0, "y": 0}
+                    font_size: 12
+                    on_press:
+                        state: "normal"
+                    on_release:
+                        state: "down"
+                        root.DeletePromotion(self)
+                    Image:
+                        id: promQueenImg
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        source: "icons/white-queen.png"
+
+    # ---------------------------------------------------------------------------------------------------------------
+
+            Label:
+                id: ra
+                text: "A"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.18}
+                font_size: 32
+            Label:
+                id: rb
+                text: "B"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.18}
+                font_size: 32
+            Label:
+                id: rc
+                text: "C"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.18}
+                font_size: 32
+            Label:
+                id: rd
+                text: "D"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.18}
+                font_size: 32
+            Label:
+                id: re
+                text: "E"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.18}
+                font_size: 32
+            Label:
+                id: rf
+                text: "F"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.18}
+                font_size: 32
+            Label:
+                id: rg
+                text: "G"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.18}
+                font_size: 32
+            Label:
+                id: rh
+                text: "H"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.18}
+                font_size: 32
+            Label:
+                id: c1
+                text: "1"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.25}
+                font_size: 32
+            Label:
+                id: c2
+                text: "2"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.32}
+                font_size: 32
+            Label:
+                id: c3
+                text: "3"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.39}
+                font_size: 32
+            Label:
+                id: c4
+                text: "4"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.46}
+                font_size: 32
+            Label:
+                id: c5
+                text: "5"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.53}
+                font_size: 32
+            Label:
+                id: c6
+                text: "6"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.6}
+                font_size: 32
+            Label:
+                id: c7
+                text: "7"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.67}
+                font_size: 32
+            Label:
+                id: c8
+                text: "8"
+                color: (1, 1, 1, 1)
+                background_color: (0, 0, 0, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.03, "y": 0.74}
+                font_size: 32
+
+    # ---------------------------------------------------------------------------------------------------------------
+
+            Button:
+                id: btn00
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.25}
+                font_size: 12
+                btn0Img: btn0Img
+                int: 0
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn0Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn01
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.25}
+                font_size: 12
+                btn1Img: btn1Img
+                int: 1
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn1Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn02
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.25}
+                font_size: 12
+                btn2Img: btn2Img
+                int: 2
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn2Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn03
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.25}
+                font_size: 12
+                btn3Img: btn3Img
+                int: 3
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn3Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn04
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.25}
+                font_size: 12
+                btn4Img: btn4Img
+                int: 4
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn4Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn05
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.25}
+                font_size: 12
+                btn5Img: btn5Img
+                int: 5
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn5Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn06
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.25}
+                font_size: 12
+                btn6Img: btn6Img
+                int: 6
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn6Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn07
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.25}
+                font_size: 12
+                btn7Img: btn7Img
+                int: 7
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn7Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn08
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.32}
+                font_size: 12
+                btn8Img: btn8Img
+                int: 8
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn8Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn09
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.32}
+                font_size: 12
+                btn9Img: btn9Img
+                int: 9
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn9Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn10
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.32}
+                font_size: 12
+                btn10Img: btn10Img
+                int: 10
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn10Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn11
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.32}
+                font_size: 12
+                btn11Img: btn11Img
+                int: 11
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn11Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn12
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.32}
+                font_size: 12
+                btn12Img: btn12Img
+                int: 12
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn12Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn13
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.32}
+                font_size: 12
+                btn13Img: btn13Img
+                int: 13
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn13Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn14
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.32}
+                font_size: 12
+                btn14Img: btn14Img
+                int: 14
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn14Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn15
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.32}
+                font_size: 12
+                btn15Img: btn15Img
+                int: 15
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn15Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn16
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.39}
+                font_size: 12
+                btn16Img: btn16Img
+                int: 16
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn16Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn17
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.39}
+                font_size: 12
+                btn17Img: btn17Img
+                int: 17
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn17Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn18
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.39}
+                font_size: 12
+                btn18Img: btn18Img
+                int: 18
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn18Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn19
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.39}
+                font_size: 12
+                btn19Img: btn19Img
+                int: 19
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn19Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn20
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.39}
+                font_size: 12
+                btn20Img: btn20Img
+                int: 20
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn20Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn21
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.39}
+                font_size: 12
+                btn21Img: btn21Img
+                int: 21
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn21Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn22
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.39}
+                font_size: 12
+                btn22Img: btn22Img
+                int: 22
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn22Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn23
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.39}
+                font_size: 12
+                btn23Img: btn23Img
+                int: 23
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn23Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn24
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.46}
+                font_size: 12
+                btn24Img: btn24Img
+                int: 24
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn24Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn25
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.46}
+                font_size: 12
+                btn25Img: btn25Img
+                int: 25
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn25Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn26
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.46}
+                font_size: 12
+                btn26Img: btn26Img
+                int: 26
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn26Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn27
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.46}
+                font_size: 12
+                btn27Img: btn27Img
+                int: 27
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn27Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn28
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.46}
+                font_size: 12
+                btn28Img: btn28Img
+                int: 28
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn28Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn29
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.46}
+                font_size: 12
+                btn29Img: btn29Img
+                int: 29
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn29Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn30
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.46}
+                font_size: 12
+                btn30Img: btn30Img
+                int: 30
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn30Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn31
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.46}
+                font_size: 12
+                btn31Img: btn31Img
+                int: 31
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn31Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn32
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.53}
+                font_size: 12
+                btn32Img: btn32Img
+                int: 32
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn32Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn33
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.53}
+                font_size: 12
+                btn33Img: btn33Img
+                int: 33
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn33Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn34
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.53}
+                font_size: 12
+                btn34Img: btn34Img
+                int: 34
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn34Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn35
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.53}
+                font_size: 12
+                btn35Img: btn35Img
+                int: 35
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn35Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn36
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.53}
+                font_size: 12
+                btn36Img: btn36Img
+                int: 36
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn36Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn37
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.53}
+                font_size: 12
+                btn37Img: btn37Img
+                int: 37
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn37Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn38
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.53}
+                font_size: 12
+                btn38Img: btn38Img
+                int: 38
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn38Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn39
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.53}
+                font_size: 12
+                btn39Img: btn39Img
+                int: 39
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn39Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn40
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.6}
+                font_size: 12
+                btn40Img: btn40Img
+                int: 40
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn40Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn41
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.6}
+                font_size: 12
+                btn41Img: btn41Img
+                int: 41
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn41Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn42
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.6}
+                font_size: 12
+                btn42Img: btn42Img
+                int: 42
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn42Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn43
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.6}
+                font_size: 12
+                btn43Img: btn43Img
+                int: 43
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn43Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn44
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.6}
+                font_size: 12
+                btn44Img: btn44Img
+                int: 44
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn44Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn45
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.6}
+                font_size: 12
+                btn45Img: btn45Img
+                int: 45
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn45Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn46
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.6}
+                font_size: 12
+                btn46Img: btn46Img
+                int: 46
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn46Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn47
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.6}
+                font_size: 12
+                btn47Img: btn47Img
+                int: 47
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn47Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn48
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.67}
+                font_size: 12
+                btn48Img: btn48Img
+                int: 48
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn48Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn49
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.67}
+                font_size: 12
+                btn49Img: btn49Img
+                int: 49
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn49Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn50
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.67}
+                font_size: 12
+                btn50Img: btn50Img
+                int: 50
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn50Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn51
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.67}
+                font_size: 12
+                btn51Img: btn51Img
+                int: 51
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn51Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn52
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.67}
+                font_size: 12
+                btn52Img: btn52Img
+                int: 52
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn52Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn53
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.67}
+                font_size: 12
+                btn53Img: btn53Img
+                int: 53
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn53Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn54
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.67}
+                font_size: 12
+                btn54Img: btn54Img
+                int: 54
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn54Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn55
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.67}
+                font_size: 12
+                btn55Img: btn55Img
+                int: 55
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn55Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn56
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.1, "y": 0.74}
+                font_size: 12
+                btn56Img: btn56Img
+                int: 56
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn56Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn57
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.17, "y": 0.74}
+                font_size: 12
+                btn57Img: btn57Img
+                int: 57
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn57Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn58
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.24, "y": 0.74}
+                font_size: 12
+                btn58Img: btn58Img
+                int: 58
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn58Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn59
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.31, "y": 0.74}
+                font_size: 12
+                btn59Img: btn59Img
+                int: 59
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn59Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn60
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.38, "y": 0.74}
+                font_size: 12
+                btn60Img: btn60Img
+                int: 60
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn60Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn61
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.45, "y": 0.74}
+                font_size: 12
+                btn61Img: btn61Img
+                int: 61
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn61Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn62
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.70, .70, .70, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.52, "y": 0.74}
+                font_size: 12
+                btn62Img: btn62Img
+                int: 62
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn62Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+            Button:
+                id: btn63
+                text: ""
+                color: (1, 1, 1, 1)
+                background_color: (.55, .55, .55, 1)
+                size_hint: (0.07, 0.07)
+                pos_hint: {"x": 0.59, "y": 0.74}
+                font_size: 12
+                btn63Img: btn63Img
+                int: 63
+                on_press:
+                    state: "normal"
+                on_release:
+                    state: "down"
+                    root.HandleButton(self)
+                Image:
+                    id: btn63Img
+                    size: self.parent.size
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    source: None
+                    color: 0,0,0,0
+
+
+
+# End of File
